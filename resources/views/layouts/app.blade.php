@@ -145,6 +145,16 @@
                                     <li><a href="{{ route('view.products') }}">View_All_Products</a></li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-package"></i>
+                                    <span key="t-ecommerce">Bundles</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ url('bundles') }}" >Bundle List</a></li>
+                                    <li><a href="{{ url('bundles/create') }}" >Create Bundle</a></li>
+                                </ul>
+                            </li>
 
 
                         </ul>

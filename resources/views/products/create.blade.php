@@ -80,6 +80,20 @@
                     </span>
                 @enderror
             </div>
+            <div class="form-group">
+                <label for="bundle_id" class="font-weight-bold mt-3">Bundles <span class="text-danger">*</span></label>
+                <select class="form-control @error('bundle_id') is-invalid @enderror"  name="bundle_id">
+                    <option value="">Select Category</option>
+                    @foreach($bundles as $bundle)
+                        <option value="{{ $bundle->id }}">{{ $bundle->name }}</option>
+                    @endforeach
+                </select>
+                @error('bundle_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
 
             <!-- Product Images -->
             <div class="form-group mt-4">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bundle;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
@@ -34,7 +35,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('products.create', compact('categories'));
+        $bundles = Bundle::all();
+        return view('products.create', compact('categories','bundles'));
     }
 
     /**
@@ -221,6 +223,7 @@ class ProductController extends Controller
             'description' => 'required',
             'category_id' => 'required',
             'subcategory_id' => 'required|exists:subcategories,id',
+            'bundle_id' => 'required',
             'new_price' => 'required|numeric',
             'old_price' => 'nullable|numeric',
             'images.*' => 'nullable|image|max:2048'
@@ -235,6 +238,7 @@ class ProductController extends Controller
         $product->new_price= $request->new_price;
         $product->category_id= $request->category_id;
         $product->subcategory_id= $request->subcategory_id;
+        $product->bundle_id= $request->bundle_id;
 
         $images=array();
 

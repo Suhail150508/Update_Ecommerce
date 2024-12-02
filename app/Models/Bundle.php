@@ -8,7 +8,7 @@ class Bundle extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','discount'];
+    protected $fillable = ['name','discount_type','price'];
 
     public function products(){
         return $this->hasMany(Product::class);

@@ -14,7 +14,8 @@ return new class extends Migration
        Schema::create('bundles', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->decimal('discount',8, 2)->default(0);
+            $table->enum('discount_type',['Fixed','Percentage'])->nullable();
+            $table->decimal('price',8, 2)->default(0);
             $table->timestamps();
         });
     }

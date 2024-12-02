@@ -43,7 +43,7 @@ Route::group(['prefix' => 'products'], function () {
 });
 // Group for bundles
 Route::group(['prefix' => 'bundles'], function () {
-    Route::get('/', [BundleController::class, 'index'])->name('products.index');
+    Route::get('/', [BundleController::class, 'index'])->name('bundle.index');
     Route::get('/create', [BundleController::class, 'create']);
     Route::post('bundle/', [BundleController::class, 'store'])->name('bundle.store');
     Route::get('/{product}', [BundleController::class, 'show'])->name('products.show');
