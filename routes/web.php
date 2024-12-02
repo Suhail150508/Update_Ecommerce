@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BundleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProductController;
@@ -40,13 +41,27 @@ Route::group(['prefix' => 'products'], function () {
     Route::put('/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
+// Group for bundles
+Route::group(['prefix' => 'bundles'], function () {
+    Route::get('/', [BundleController::class, 'index'])->name('products.index');
+    Route::get('/create', [BundleController::class, 'create']);
+    Route::post('bundle/', [BundleController::class, 'store'])->name('bundle.store');
+    Route::get('/{product}', [BundleController::class, 'show'])->name('products.show');
+    Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+});
 
 // Additional routes
+
+// Route for filtering products based on price range
+Route::post('/filter-products', [ProductController::class, 'filterProducts']);
+
 Route::get('/', [ProductController::class, 'showAllProducts']);
 Route::get('/show-all-product', [ProductController::class, 'showAllProducts'])->name('view.products');
 Route::get('/product-details', [ProductController::class, 'productDetails'])->name('product_details');
 Route::delete('/confirm-delete/{id}', [SubcategoryController::class, 'confirmDelete'])->name('confirm.delete');
 Route::delete('/confirm-category-delete/{id}', [CategoryController::class, 'confirmDelete'])->name('confirm_category.delete');
-Route::post('/filter-products', [ProductController::class, 'filterProducts'])->name('filter.products');
+// Route::get('/filter-products', [ProductController::class, 'filterProducts'])->name('filter.products');
 Route::delete('/product/{id}/image/{image}', [ProductController::class, 'removeImage'])->name('product.image.remove');
 Route::get('/getSubcategories/{categoryId}', [ProductController::class, 'getSubcategories'])->name('get.subcategories');
