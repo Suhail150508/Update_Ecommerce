@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class BundleController extends Controller
 {
     public function index(){
-        return view('bundles.index');
+        $bundles = Bundle::all();
+        return view('bundles.index',compact('bundles'));
     }
     public function create(){
         $products = Product::all();
@@ -30,7 +31,7 @@ class BundleController extends Controller
         // dd($totalPrice,$discountedPrice,$request->price );
 
         $bundle = Bundle::create($request->only('name', 'discount_type','price'));
-        // $bundle->products()->attach($request->products);
+        $bundle->products()->attach($request->product_ids);
 
         return redirect()->to('bundles');
 

@@ -11,6 +11,6 @@ class Bundle extends Model
     protected $fillable = ['name','discount_type','price'];
 
     public function products(){
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class, 'bundled_product_product');
     }
 }

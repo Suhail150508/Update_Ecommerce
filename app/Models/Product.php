@@ -17,4 +17,9 @@ class Product extends Model
     {
         return $this->belongsTo(Subcategory::class);
     }
+
+    public function bundle()
+    {
+        return $this->belongsToMany(Bundle::class, 'bundled_product_product');
+    }
 }
