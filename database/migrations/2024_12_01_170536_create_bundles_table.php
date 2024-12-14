@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->enum('discount_type',['Fixed','Percentage'])->nullable();
             $table->decimal('price',8, 2)->default(0);
+            $table->text('product_ids')->nullable(); // Store as JSON
             $table->timestamps();
         });
     }

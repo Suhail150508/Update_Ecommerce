@@ -46,10 +46,8 @@ Route::group(['prefix' => 'bundles'], function () {
     Route::get('/', [BundleController::class, 'index'])->name('bundle.index');
     Route::get('/create', [BundleController::class, 'create']);
     Route::post('bundle/', [BundleController::class, 'store'])->name('bundle.store');
-    Route::get('/{product}', [BundleController::class, 'show'])->name('products.show');
-    Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    Route::put('/{product}', [ProductController::class, 'update'])->name('products.update');
-    Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::get('/edit/{id}', [BundleController::class, 'edit']);
+    Route::put('update/', [BundleController::class, 'update'])->name('bundle.update');
 });
 
 // Additional routes

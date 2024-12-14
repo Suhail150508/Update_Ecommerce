@@ -8,7 +8,7 @@ class Bundle extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','discount_type','price'];
+    protected $fillable = ['name','discount_type','price','product_ids'];
 
     public function products(){
         return $this->belongsToMany(Product::class, 'bundled_product_product');

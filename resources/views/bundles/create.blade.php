@@ -26,9 +26,12 @@
                 <!-- Select Products -->
                 <div class="form-group mb-4">
                     <label class="fw-semibold">Select Products <span class="text-danger">*</span></label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search-product" placeholder="Search Product">
+                    </div>
                     <div class="border rounded p-3">
                         @foreach($products as $product)
-                            <div class="form-check">
+                            <div class="form-check" id="all-products">
                                 <input class="form-check-input" 
                                        type="checkbox" 
                                        name="product_ids[]" 
@@ -89,4 +92,21 @@
         </div>
         
     </div>
+
+    <script>
+
+        document.getElementById('search-product').addEventListener('input',function(){
+            var searchValue = this.value.toLowerCase();
+            var allProducts = document.querySelectorAll('#all-products');
+            allProducts.forEach(function (item) {
+                const productName = item.querySelector('label').textContent.toLowerCase();
+            if(productName.includes(searchValue)){
+                item.style.display = '';
+            }else{
+                item.style.display = 'none';
+            }
+            });
+        })
+
+    </script>
 @endsection

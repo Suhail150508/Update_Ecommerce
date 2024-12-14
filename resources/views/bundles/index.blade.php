@@ -7,17 +7,18 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
+                <th>SN</th>
                 <th>Bundle Name</th>
                 <th>Products</th>
                 {{-- <th>Bundle Price</th> --}}
                 <th>Discount (%)</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($bundles as $bundle)
+            @foreach ($bundles as $index => $bundle)
             <tr>
-                <td>{{ $bundle->id }}</td>
+                <td>{{ $index + 1 }}</td>
                 <td>{{ $bundle->name }}</td>
                 <td>
                     @foreach ($bundle->products as $product)
@@ -25,7 +26,12 @@
                         {{ $product->name }} ({{ number_format($product->new_price, 2) }})<br>
                     @endforeach
                 </td>
-                <td>{{ number_format($bundle->price,0) ?? 0 }}%</td>
+                <td>{{ number_format($bundle->price,0) ?? 0 }}</td>
+                <td>
+                    <a href="{{ url('bundles/edit', $bundle->id)}}" class="btn btn-info">Edit</a>
+                    
+                </td>
+                
                 {{-- <td>{{ $bundle->discount->discount_percentage ?? 0 }}%</td> --}}
             </tr>
             @endforeach
